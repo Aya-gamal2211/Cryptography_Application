@@ -24,7 +24,7 @@ def encryptAES(plainText):
     
 
 encrypted=encryptAES("19p1689")
-print("The encrypted Text is: ", encrypted)
+print("The encrypted Text (AES) is: ", encrypted)
 
 def encryptDES(plainText):
     key = get_random_bytes(8)  # Generate a random 8-byte key for DES
@@ -35,7 +35,7 @@ def encryptDES(plainText):
 
 plaintext = "Hello, DES!"
 ct, nonce, tag = encryptDES(plaintext)
-print("Ciphertext:", ct)
+print("Ciphertext using DES : ", ct)
 print("Nonce:", nonce)
 print("Tag:", tag)
 
