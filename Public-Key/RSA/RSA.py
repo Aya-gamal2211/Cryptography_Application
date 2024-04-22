@@ -8,13 +8,20 @@ with open ("public.pem","rb") as f :
 with open ("private.pem","rb") as f :
     private_key = rsa.PrivateKey.load_pkcs1(f.read())
 
-message="Welcome to security world"
-encrypted_msg = rsa.encrypt(message.encode(),public_key)
-
-with open('encrypted_msg','wb') as f:
-    f.write(encrypted_msg)
+def encryptWithPublicKey():
+    
+    message="Welcome to security world"
+    encrypted_msg = rsa.encrypt(message.encode(),public_key)
+    print("The encrypted message is", encrypted_msg)
+    # write the encrypted message in a file
+    with open('encrypted_msg','wb') as f:
+        f.write(encrypted_msg)
 
 ## for decryption ##
-## encrypted_msg =open ('encrypted_msg','rb').read()
-## plaintext = rsa.decrypt(encrypted_msg,private_key) 
-## print(plaintext.decode())
+def decryption():
+    encrypted_msg =open ('encrypted_msg','rb').read()
+    plaintext = rsa.decrypt(encrypted_msg,private_key) 
+    print("plain text is : ",plaintext.decode())
+
+encryptWithPublicKey()
+decryption()
