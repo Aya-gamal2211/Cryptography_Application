@@ -6,7 +6,7 @@ from Crypto.PublicKey import RSA
 
 
 
-def encrypt(plainText):
+def encryptAES(plainText):
     
     key = get_random_bytes(16)
     iv = token_bytes(AES.block_size)
