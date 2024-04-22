@@ -1,10 +1,11 @@
-from Crypto.Cipher import AES
-from Crypto.Cipher import DES
+from Crypto.Cipher import AES, DES
+# from Crypto.Cipher import DES
+from cryptography.hazmat.primitives.asymmetric import rsa,ec
 
 from Crypto.Random import get_random_bytes
 from Crypto.Util.Padding import pad
 from secrets import token_bytes
-from Crypto.PublicKey import RSA
+from Crypto.PublicKey import RSA,ECC
 
 
 
@@ -44,8 +45,23 @@ def hashingModule():
     return
     
 def RSAKey():
+    private_key = rsa.generate_private_key(
+    public_exponent=65537,
+    key_size=2048,
+)
+    public_key = private_key.public_key()
     
-    return
+    return public_key, private_key
+
+
+def ECCKey():
+    # key = ECC.generate(curve='p256')
+    private_key = ec.generate_private_key(
+    ec.SECP384R1()
+)
+    public_key = private_key.public_key()
+    return private_key,public_key
+    
 
     
 
