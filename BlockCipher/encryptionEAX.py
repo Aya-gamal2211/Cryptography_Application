@@ -3,8 +3,7 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 from secrets import token_bytes
 
-key = token_bytes(16)
-# key_hashed =hashlib.sha256(key).digest()
+key = token_bytes(16) #key generation of 16 bytes
 
 def encrpt_msg(msg):
     # padding to make the length of the input data a multiple of the block size (16 bytes for AES).
@@ -31,11 +30,13 @@ def decrypt_msg(nonce , cipherText ,tag):
         return False
     
 nonce , cipherText ,tag = encrpt_msg(input('Enter the msg you want to encrypt: '))
+print(f'The cipher text is : {cipherText}\n')
+
 plainText = decrypt_msg(nonce,cipherText ,tag)
-print(f'The cipher text is : {cipherText}')
 if not plainText:
     print('Message is corrupted')
 else :
     print(f'PlainText is {plainText}')
 
+# key_hashed =hashlib.sha256(key).digest()
 
