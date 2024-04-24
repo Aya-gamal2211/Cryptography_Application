@@ -10,11 +10,9 @@ iv = token_bytes(AES.block_size)
 key = get_random_bytes(16)
 
 def encryptAES(plainText):
-
     #CBC Mode: It is a mode of operation where each plaintext block gets XOR-ed 
     # with the previous ciphertext block prior to encryption.
     cipher = AES.new(key, AES.MODE_CBC,iv)
-    # cipher = AES.new(key, AES.MODE_EAX)
     plainTextPadded=pad(plainText.encode(), AES.block_size)
     ct_bytes = cipher.encrypt(plainTextPadded)
 
