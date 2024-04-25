@@ -1,5 +1,4 @@
 from Crypto.Cipher import AES, DES
-# from Crypto.Cipher import DES
 from cryptography.hazmat.primitives.asymmetric import rsa,ec
 from Crypto.Random import get_random_bytes
 from Crypto.Util.Padding import pad,unpad
@@ -25,8 +24,8 @@ print("The encrypted Text (AES) is: ", encrypted)
 
 def decryptAES(cipherText):
     
-    cipher = AES.new(key, AES.MODE_CBC, iv)  # Create AES cipher in CBC mode with the given IV
-    plainTextPadded = cipher.decrypt(cipherText)  # Decrypt the ciphertext
+    cipher = AES.new(key, AES.MODE_CBC, iv)  
+    plainTextPadded = cipher.decrypt(cipherText)  
     plainText = unpad(plainTextPadded, AES.block_size).decode()  # Unpad and decode the plaintext
     return plainText
 
@@ -41,7 +40,7 @@ def encryptDES(plainText):
     cipher = DES.new(keyDES, DES.MODE_CBC, ivDES)  
     paddedPlainText=pad(plainText.encode(),DES.block_size)
     ct_bytes = cipher.encrypt(paddedPlainText) # Encrypt the plaintext
-    return ct_bytes  # Return the ciphertext, nonce, and tag
+    return ct_bytes  
     
 
 def decryptDES( cipherText):
