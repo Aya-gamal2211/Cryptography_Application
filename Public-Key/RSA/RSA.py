@@ -10,12 +10,12 @@ def generate_keys():
     with open("public.pem", "wb") as f:
         f.write(publicKey.save_pkcs1("PEM"))
 
+#  get the value of the private key generated
+with open ("private.pem","rb") as f :
+    private_key = rsa.PrivateKey.load_pkcs1(f.read())
 
 with open ("public.pem","rb") as f :
     public_key = rsa.PublicKey.load_pkcs1(f.read())
-
-with open ("private.pem","rb") as f :
-    private_key = rsa.PrivateKey.load_pkcs1(f.read())
 
 def encryptWithPublicKey():
     
@@ -32,6 +32,3 @@ def decryption():
     plaintext = rsa.decrypt(encrypted_msg,private_key) 
     print("plain text is : ",plaintext.decode())
 
-# generate_keys()
-encryptWithPublicKey()
-decryption()
