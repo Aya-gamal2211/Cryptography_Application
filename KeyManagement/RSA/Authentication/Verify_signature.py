@@ -1,6 +1,5 @@
 import rsa
-############# verify the receiver at decrypting the message ###############
-
+############# verify the signature at the receiver side ###############
 username=input("Enter your username : ")
 with open (f"{username}_public.pem") as f :
     public_key = rsa.PublicKey.load_pkcs1(f.read())
@@ -11,7 +10,7 @@ with open (f"{username}_private.pem") as f :
 
 # get the value of the public key 
 message=open ('message','rb').read()
-signature=open ('signature_file','rb').read()
+signature=open (f"{username}_signature",'rb').read()
 
 try:
     

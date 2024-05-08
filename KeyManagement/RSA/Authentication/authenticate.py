@@ -53,12 +53,12 @@ def authentication():
 
             with open (f"{username}_public.pem","rb") as f :
                 public_key = rsa.PublicKey.load_pkcs1(f.read())
-
             ############# sign the message with the owners of the private key ########
-            message = open('message','rb').read()
+            
             # hash the original message using SHA-256 algorithm
             #hash_value = rsa.compute_hash(message, "SHA-256")
             # add the message , private key for each user and the hashed value in the signature
+            message = open('message','rb').read()
             signature = rsa.sign(message, private_key, "SHA-256")
             with open(f"{username}_signature",'wb') as signature_file:
                 signature_file.write(signature)
