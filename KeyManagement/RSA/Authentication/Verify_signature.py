@@ -13,7 +13,6 @@ message=open ('message','rb').read()
 signature=open (f"{username}_signature",'rb').read()
 
 try:
-    
     rsa.verify(message,signature,public_key)
     print("signature is correct , success sending message")
     encrypted_msg =open ('encrypted_msg1','rb').read()
