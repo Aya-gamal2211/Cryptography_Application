@@ -30,7 +30,6 @@ def register_new(username, password):
         with open("auth.txt", "a") as f:
             f.write(f"{username},{hashed_password}\n")
             print("Registered successfully")
-            
         # Generate keys only if they don't already exist
         generate_keys(username)
         
@@ -86,12 +85,16 @@ def Send_message():
             if not os.path.isfile(receiver_public_key_file):
                 print(f"Error: Receiver's public key not found. Ask {receiver_username} to register.")
                 return
-
-            message = input("Enter the message you want to send : ").encode()
+            message = input("Enter the message you want to send : ")
+            if not message:
+                print('Please enter a message, it cannot be empty.')
+                return
+            
+            message_bytes = message.encode()  # Convert message to bytes
             shared_secret_key = os.urandom(32)
 
             # Encrypt the message with AES using the shared secret key
-            encrypted_message = encrypt_with_aes(message, shared_secret_key)
+            encrypted_message = encrypt_with_aes(message_bytes, shared_secret_key)
 
             # Encrypt the shared secret key with receiver's public key
             with open(receiver_public_key_file, "rb") as f:
